@@ -1,4 +1,4 @@
-package correcter.Encoder;
+package correcter.encoder;
 
 public class Encoder {
 

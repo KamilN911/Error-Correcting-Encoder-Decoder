@@ -1,6 +1,6 @@
 package correcter;
 
-import correcter.Encoder.Encoder;
+import correcter.encoder.Encoder;
 import correcter.errorSimulator.TextHarmer;
 import correcter.utils.Input;
 
