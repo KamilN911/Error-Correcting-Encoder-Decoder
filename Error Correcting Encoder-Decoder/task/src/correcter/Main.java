@@ -4,6 +4,7 @@ import correcter.decoder.Decoder;
 import correcter.encoder.Encoder;
 import correcter.errorSimulator.TextHarmer;
 import correcter.utils.Input;
+import correcter.utils.InputFromAFile;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,5 +18,6 @@ public class Main {
         System.out.println(encodedInput);
         System.out.println(textHarmer.broke(encodedInput));
         System.out.println(decoder.decode(encodedInput));
+
     }
 }
