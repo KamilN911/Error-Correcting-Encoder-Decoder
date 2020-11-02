@@ -3,7 +3,7 @@ package correcter.errorSimulator;
 import java.util.Arrays;
 import java.util.Random;
 
-public class BitHarmer {
+public class ByteHarmer {
 
     public String broke(String input) {
         Random random = new Random();
