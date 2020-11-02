@@ -2,11 +2,11 @@ package correcter.utils;
 
 public class ToHexConverter {
 
-    public String convert(byte[] input) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b : input) {
-            sb.append(Integer.toHexString(b));
+    public String[] convert(byte[] input) {
+        String[] result = new String[input.length];
+        for (int i = 0; i < input.length; i++) {
+            result[i] = Integer.toHexString(input[i]);
         }
-        return sb.toString();
+        return result;
     }
 }
