@@ -10,6 +10,7 @@ import correcter.utils.converters.ToHexConverter;
 import correcter.utils.io.InputFromAFile;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,10 +29,11 @@ public class Main {
 
         String path = "Error Correcting Encoder-Decoder/task/src/correcter/resources/send.txt";
         String original = new String(InputFromAFile.byteArr(path), StandardCharsets.UTF_8);
+        System.out.println(Arrays.toString(InputFromAFile.byteArr(path)));
         String[] arr = ToBitConverter.convert(InputFromAFile.byteArr(path));
         String[] arr2 = ToHexConverter.convert(InputFromAFile.byteArr(path));
         String[] harmBytes = EveryByteHarmer.broke(arr);
-        String originalCorupted = ArrayToString.convert(harmBytes);
+        String originalCorupted = new String(StringArrayToBytesArray.convert(ArrayToString.convert(harmBytes)), StandardCharsets.UTF_8);
         String[] harmHex = ToHexConverter.convert(StringArrayToBytesArray.convert(originalCorupted));
         System.out.println("original imput:");
         System.out.println("In Binary: ");
@@ -52,9 +54,8 @@ public class Main {
         for (String s: harmHex) {
             System.out.print(s + " ");
         }
-//        System.out.println("corrupted One");
-//        System.out.println(byteHarmer.broke("1101011"));
-
+        System.out.println("corrupted One");
+        System.out.println(originalCorupted);
 
 
     }

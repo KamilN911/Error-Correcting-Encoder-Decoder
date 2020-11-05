@@ -1,20 +1,19 @@
 package correcter.utils.io;
-import java.io.File;
-import java.io.FileNotFoundException;
+import javax.imageio.IIOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class InputFromAFile {
 
     public static byte[] byteArr(String path) {
-        StringBuilder sb = new StringBuilder();
         File file = new File(path);
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNext()) {
-                sb.append(sc.next());
-            }
-        } catch (FileNotFoundException e) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            byte[] result = fileInputStream.readAllBytes();
+            return result;
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return sb.toString().getBytes();
+        return null;
     }
 }
