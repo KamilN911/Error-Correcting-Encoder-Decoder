@@ -1,17 +1,15 @@
 package correcter;
 
-import correcter.decoder.Decoder;
-import correcter.encoder.Encoder;
 import correcter.errorSimulator.BitHarmer;
 import correcter.errorSimulator.ByteHarmer;
 import correcter.errorSimulator.EveryByteHarmer;
-import correcter.errorSimulator.TextHarmer;
-import correcter.utils.Input;
-import correcter.utils.InputFromAFile;
-import correcter.utils.ToBitConverter;
-import correcter.utils.ToHexConverter;
+import correcter.utils.converters.ArrayToString;
+import correcter.utils.converters.StringArrayToBytesArray;
+import correcter.utils.converters.ToBitConverter;
+import correcter.utils.converters.ToHexConverter;
+import correcter.utils.io.InputFromAFile;
 
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,9 +32,15 @@ public class Main {
         BitHarmer bitHarmer = new BitHarmer();
         ByteHarmer byteHarmer = new ByteHarmer();
         EveryByteHarmer everyByteHarmer = new EveryByteHarmer();
+        StringArrayToBytesArray toBytesArray = new StringArrayToBytesArray();
+        ArrayToString arrayToString = new ArrayToString();
         String path = "Error Correcting Encoder-Decoder/task/src/correcter/resources/send.txt";
+        String original = new String(inputFromAFile.byteArr(path), StandardCharsets.UTF_8);
         String[] arr = bitConverter.convert(inputFromAFile.byteArr(path));
         String[] arr2 = hexConverter.convert(inputFromAFile.byteArr(path));
+        String[] harmBytes = everyByteHarmer.broke(arr);
+        String originalCorupted = arrayToString.convert(harmBytes);
+        String[] harmHex = hexConverter.convert(toBytesArray.convert(originalCorupted));
         System.out.println("original imput:");
         System.out.println("In Binary: ");
         for (String s: arr) {
@@ -46,8 +50,16 @@ public class Main {
         for (String s: arr2) {
             System.out.print(s + " ");
         }
+        System.out.println("\n In String: \n" + original);
+
         System.out.println("\n Every Byte corrupted: ");
-        System.out.println(Arrays.toString(everyByteHarmer.broke(arr)));
+        for (String s: harmBytes) {
+            System.out.print(s + " ");
+        }
+        System.out.println("\n Every Hex corrupted: ");
+        for (String s: harmHex) {
+            System.out.print(s + " ");
+        }
 //        System.out.println("corrupted One");
 //        System.out.println(byteHarmer.broke("1101011"));
 

@@ -14,6 +14,10 @@ public class ByteHarmer {
         } else {
             temp[index] = "1";
         }
-        return Arrays.toString(temp);
+        StringBuilder sb = new StringBuilder();
+        for (String s: temp) {
+            sb.append(s);
+        }
+        return sb.toString();
     }
 }

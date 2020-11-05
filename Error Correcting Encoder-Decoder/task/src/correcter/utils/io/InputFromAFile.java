@@ -1,4 +1,4 @@
-package correcter.utils;
+package correcter.utils.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
