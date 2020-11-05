@@ -1,12 +1,11 @@
 package correcter.utils.io;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class InputFromAFile {
 
-    public byte[] byteArr(String path) {
+    public static byte[] byteArr(String path) {
         StringBuilder sb = new StringBuilder();
         File file = new File(path);
         try (Scanner sc = new Scanner(file)) {

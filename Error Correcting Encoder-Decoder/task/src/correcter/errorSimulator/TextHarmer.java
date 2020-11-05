@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TextHarmer {
 
-    public String broke (String input) {
+    public static String broke (String input) {
         String tab = "abcdefghijklmnoprstuvxyzABCDEFGHIJKLMNOPRSTUVXYZ 1234567890";
         Random random = new Random();
         StringBuilder result = new StringBuilder(input);

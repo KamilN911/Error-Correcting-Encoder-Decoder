@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class ByteHarmer {
 
-    public String broke(String input) {
+    public static String broke(String input) {
         Random random = new Random();
         int index = random.nextInt(input.length()-1);
         String[] temp = input.split("");

@@ -26,21 +26,13 @@ public class Main {
 //        System.out.println(textHarmer.broke(encodedInput));
 //        System.out.println(decoder.decode(encodedInput));
 
-        ToBitConverter bitConverter = new ToBitConverter();
-        ToHexConverter hexConverter = new ToHexConverter();
-        InputFromAFile inputFromAFile = new InputFromAFile();
-        BitHarmer bitHarmer = new BitHarmer();
-        ByteHarmer byteHarmer = new ByteHarmer();
-        EveryByteHarmer everyByteHarmer = new EveryByteHarmer();
-        StringArrayToBytesArray toBytesArray = new StringArrayToBytesArray();
-        ArrayToString arrayToString = new ArrayToString();
         String path = "Error Correcting Encoder-Decoder/task/src/correcter/resources/send.txt";
-        String original = new String(inputFromAFile.byteArr(path), StandardCharsets.UTF_8);
-        String[] arr = bitConverter.convert(inputFromAFile.byteArr(path));
-        String[] arr2 = hexConverter.convert(inputFromAFile.byteArr(path));
-        String[] harmBytes = everyByteHarmer.broke(arr);
-        String originalCorupted = arrayToString.convert(harmBytes);
-        String[] harmHex = hexConverter.convert(toBytesArray.convert(originalCorupted));
+        String original = new String(InputFromAFile.byteArr(path), StandardCharsets.UTF_8);
+        String[] arr = ToBitConverter.convert(InputFromAFile.byteArr(path));
+        String[] arr2 = ToHexConverter.convert(InputFromAFile.byteArr(path));
+        String[] harmBytes = EveryByteHarmer.broke(arr);
+        String originalCorupted = ArrayToString.convert(harmBytes);
+        String[] harmHex = ToHexConverter.convert(StringArrayToBytesArray.convert(originalCorupted));
         System.out.println("original imput:");
         System.out.println("In Binary: ");
         for (String s: arr) {
