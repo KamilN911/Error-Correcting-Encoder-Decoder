@@ -3,11 +3,15 @@ package correcter;
 import correcter.decoder.Decoder;
 import correcter.encoder.Encoder;
 import correcter.errorSimulator.BitHarmer;
+import correcter.errorSimulator.ByteHarmer;
+import correcter.errorSimulator.EveryByteHarmer;
 import correcter.errorSimulator.TextHarmer;
 import correcter.utils.Input;
 import correcter.utils.InputFromAFile;
 import correcter.utils.ToBitConverter;
 import correcter.utils.ToHexConverter;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,21 +32,24 @@ public class Main {
         ToHexConverter hexConverter = new ToHexConverter();
         InputFromAFile inputFromAFile = new InputFromAFile();
         BitHarmer bitHarmer = new BitHarmer();
+        ByteHarmer byteHarmer = new ByteHarmer();
+        EveryByteHarmer everyByteHarmer = new EveryByteHarmer();
         String path = "Error Correcting Encoder-Decoder/task/src/correcter/resources/send.txt";
         String[] arr = bitConverter.convert(inputFromAFile.byteArr(path));
         String[] arr2 = hexConverter.convert(inputFromAFile.byteArr(path));
-        System.out.println("original imput");
+        System.out.println("original imput:");
+        System.out.println("In Binary: ");
         for (String s: arr) {
             System.out.print(s + " ");
         }
-        System.out.println();
+        System.out.println("\nIn Hex: ");
         for (String s: arr2) {
             System.out.print(s + " ");
         }
-        System.out.println();
-        System.out.println("corrupted One");
-
-        System.out.println(bitHarmer.broke("1101011"));
+        System.out.println("\n Every Byte corrupted: ");
+        System.out.println(Arrays.toString(everyByteHarmer.broke(arr)));
+//        System.out.println("corrupted One");
+//        System.out.println(byteHarmer.broke("1101011"));
 
 
 
